@@ -1,0 +1,23 @@
+version: '3'
+services:
+  wpweb:
+    build: .
+    container_name: wpweb
+    read_only: true
+    ports:
+      - "80:80"
+    volumes:
+      - /tmp
+      - /var/run/apache2
+    links:
+      - wpdb
+  wpdb:
+    image: mysql:5.7
+    container_name: wpdb
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: testdb
+      TZ: 'Asia/Tokyo'
+
