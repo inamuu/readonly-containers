@@ -8,5 +8,9 @@ RUN apt update && \
     vim \
     && apt clean
 
+VOLUME /tmp
+VOLUME /var/run/apache2
+VOLUME /var/www/html
+
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["apache2-foreground"]
